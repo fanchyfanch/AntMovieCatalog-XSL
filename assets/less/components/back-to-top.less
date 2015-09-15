@@ -1,0 +1,81 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+	DOCUMENT INFORMATION
+	Category    : components
+	Filename    : back-to-top.less
+	Author      : François GUIBERT (f@nchy.fr)
+	Author URI  : http://www.fanchy.fr
+	Version     : 1.0
+	Created     : 2015/07/01
+	Updated     : 2015/08/04
+	Description :
+	Comment		:
+------------------------------------------------------------------*/
+//@import (reference) "http://localhost/_libraries/CSS/fonts/font-awesome/4.3.0/less/font-awesome.less";
+@import (reference) "../themes/_bootstrap-reference.less";
+
+@back-to-top-size : 40px;
+
+
+.back-to-top{
+	.navbar-fixed-bottom;
+	bottom     : @back-to-top-size;
+	right      : @back-to-top-size;
+	left       : inherit;
+	visibility : hidden;
+	opacity    : 0;
+	.transition(all .3s 0s);
+
+	/*
+	  z-index: 10;
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+	  // image replacement properties
+	  overflow: hidden;
+	  text-indent: 100%;
+	  white-space: nowrap;
+	  */
+}
+
+/*
+.back-to-top.cd-is-visible,
+.back-to-top.cd-fade-out,
+.no-touch .back-to-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+
+.back-to-top.cd-is-visible {
+  // the button becomes visible
+  visibility: visible;
+  opacity: 1;
+}
+
+.back-to-top.cd-fade-out {
+  // if the user keeps scrolling down, the button is out of focus and becomes less visible
+  opacity: .5;
+}
+
+.no-touch .back-to-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+
+
+@media only screen and (min-width : @screen-sm) {
+  .back-to-top {
+	right: 20px;
+	bottom: 20px;
+  }
+}
+
+
+@media only screen and (min-width : @screen-md) {
+  .back-to-top {
+	height: 60px;
+	width: 60px;
+	right: 30px;
+	bottom: 30px;
+  }
+}
+*/

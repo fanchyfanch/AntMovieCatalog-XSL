@@ -1,0 +1,73 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+    MENU component
+------------------------------------------------------------------*/
+.menu__responsive{
+
+  ul, ol {
+	z-index:100;
+	position: relative;
+	display:block;
+	list-style-type:none;
+	background:black;
+	padding:0;
+	margin:0;
+	line-height:2rem;
+
+	&:after{
+	  content: "";
+	  clear: both;
+	  display: block;
+	}
+
+	li {
+	  float: left;
+	  text-align:center;
+	  width:11rem;
+
+	  a {
+		display: block;
+		//padding:.5rem 1rem;
+		color:gray;
+		text-decoration: none;
+
+		&:hover{
+		  color:white;
+		}
+	  }
+
+	  &.active,
+	  &:hover{
+		background:gray;
+
+		a{
+		  color:white;
+		}
+	  }
+
+	  &:hover {
+		& > ul,
+		& > ol{
+		  display:block;
+		}
+	  }
+	}
+
+	ul, ol{
+	  position: absolute;
+	  display:none;
+	  top: 100%;
+
+	  li {
+		float: none;
+		position: relative;
+
+		ul, ol {
+		  position: absolute;
+		  left: 100%;
+		  top:0;
+		}
+	  }
+	}
+  }
+}

@@ -1,0 +1,264 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+	HELPERS fanchy
+------------------------------------------------------------------*/
+//@import (reference) "../themes/_bootstrap-reference.less";
+@import (reference) "../../../bower_components/bootstrap/less/bootstrap.less";
+
+// TRICK FOR EQUAL HEIGHT COLUMN
+.row-equal-height{
+  overflow: hidden;
+  .col{margin-bottom: -99999px; padding-bottom: 99999px; }
+}
+
+.desaturate{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.vertical-align-middle{
+  .vertical-align-middle();
+}
+
+.vertical-align-middle(){
+    padding:0;
+    list-style:none;
+    display:table;
+    height:100%;
+
+    & > *{
+      height:100%;
+      display:table-cell;
+      vertical-align:middle;
+    }
+}
+
+
+/* SIZES
+.widtheightMax{width:100%; height:100%; }
+.width1of1hack{width:99.8%; }
+.width1of1{width:100%; }
+.width9of10{width:90%; }
+.width4of5{width:80%; }
+.width3of4{width:75%; }
+.width2of3{width:66.66666%; }
+.width3of5{width:60%;}
+.width1of2{width:50%; }
+.width1of2hack{width:49.8%; }
+.width2of5{width:40%; }
+.width1of3{width:33.33333%; }
+.width1of4{width:25%; }
+.width1of5{width:20%; }
+.width1of10{width:10%; }
+.widthauto{width:auto; }
+
+.height1of1{height:100%; }
+.height9of10{height:90%; }
+.height4of5{height:80%; }
+.height3of4{height:75%; }
+.height2of3{height:66.66666%; }
+.height3of5{height:60%; }
+.height1of2{height:50%; }
+.height2of5{height:40%; }
+.height1of3{height:33.33333%; }
+.height1of4{height:25%; }
+.height1of5{height:20%; }
+.height1of10{height:10%; }
+.heightauto{height:auto; }
+
+.margauto{margin-left:auto; margin-right:auto; }
+.margzero{margin:0; }
+.margfive{margin:5px; }
+.margten{margin:10px; }
+.margfifteen{margin:15px; }
+.margtwenty{margin:20px; }
+
+.padzero{padding:0; }
+.padfive{padding:5px; }
+.padfifteen{padding:15px; }
+.padtwenty{padding:20px; }
+*/
+
+/* EXCEPTION
+table.padfive{padding:0; }
+table.padfive td{padding:5px; }
+ */
+
+/* ALIGNMENTS
+.justify{text-align:justify; }
+.center{text-align:center; }
+.left{text-align:left; }
+.right{text-align:right; }
+.top{vertical-align:top; }
+.middle{vertical-align:middle; }
+.bottom{vertical-align:bottom; }
+
+
+.floatLeftCell li{float:left; }
+.floatLeftCell li.clear{clear:both; }
+ */
+
+/* IE6
+* html .table{position:relative; }
+* html .table li{position:absolute; height:auto; top:50%; margin-top:expression(-this.offsetHeight / 2); }
+*/
+
+/* IE7
+*:first-child+html .table{position:relative; }
+*:first-child+html .table li{position:absolute; height:auto; top:50%; margin-top:expression(-this.offsetHeight / 2); }
+
+.tableResize{display:table; table-layout:auto; margin:auto; }
+
+dl.table-display{padding:0; overflow:auto; }
+dl.table-display dt, dl.table-display dd{padding:0 0 10px; float:left; vertical-align:middle; }
+dl.table-display dt{clear:left; text-align:right; font-weight:bold; }
+dl.table-display dt label{font-weight:bold; }
+dl.table-display dt.colspan{width:100%; font-weight:normal; text-align:justify; }
+dl.table-display dt.colspan.center{text-align:center; }
+
+
+dl.padzero dt, dl.padzero dd{padding:0; }
+
+dl.table-display select,
+dl.table-display input[type="text"],
+dl.table-display input[type="email"],
+dl.table-display input[type="password"]{
+  width:100%;
+  background:#ffffff;
+  border-width:1px;
+  border-style:solid;
+  border-color:#000000;
+}
+
+.table-quart dt{width:23%; }
+.table-quart dd{width:74%; margin:0 0 0 2%; }
+
+.table-third dt{width:33%; }
+.table-third dd{width:64%; margin:0 0 0 2%; }
+
+.table-half dt{width:48%; }
+.table-half dd{width:49%; margin:0 0 0 2%; }
+
+.table-tquart dt{width:74%; }
+.table-tquart dd{width:23%; margin:0 0 0 2%; }
+*/
+
+// LIST
+.list-inside{list-style-position:inside; }
+.list-outside{list-style-position:outside; }
+.list-square{list-style-type:square; }
+.list-circle{list-style-type:circle; }
+.list-disc{list-style-type:disc;}
+//.list-none{list-style-type:none; }
+.list-numeric{list-style-type:decimal; }
+.list-upperalpha{list-style-type:upper-alpha; }
+
+
+
+/*
+.posAbs{position:absolute; }
+.posRel{position:relative; }
+.posFix{position:fixed; }
+.floatLeft{float:left; }
+.floatRight{float:right; }
+
+/* TEXTS CARACTERISTICS
+.block{display:block; }
+.inline{display:inline; }
+.hide{display:none; }
+.hidden{visibility:hidden; }
+.normal, a.normal, a.normal:link, a.normal:visited{font-weight:normal; font-style:normal; }
+b, strong, .bold{font-weight:bold; }
+i, .italic{font-style:italic; }
+.capital{text-transform:uppercase; }
+.scapital{font-variant:small-caps; }
+.lowercase{text-transform:lowercase; }
+.ucfirst{
+  text-transform:lowercase;
+  text-transform:capitalize\9;
+}
+.ucfirst :first-letter{text-transform:uppercase; }
+
+@-moz-document url-prefix(){.ucfirst{text-transform:capitalize; }}
+
+.overline{text-decoration:overline; }
+.underline{text-decoration:underline; }
+
+.paragraphBreakLine{padding:0 0 1em 0; }
+
+.textwhite, a.textwhite, a.textwhite:link, a.textwhite:visited, a.textwhite:hover{color:#ffffff; }
+.textblack{color:#000000; }
+
+.backwhite{background-color:#ffffff; }
+.backblack{background-color:#000000; }
+
+/* LIST STYLISH
+ol{list-style-type:decimal; }
+
+ol.bullets{
+  list-style-position:outside;
+  margin:0 30px 0 30px;
+  counter-reset:li;
+}
+
+ol.bullets li{
+  position:relative; // Create a positioning context
+  margin:15px 0 15px 0;
+  padding:5px 0 0 8px;
+  zoom:expression(
+		(typeof step == "undefined" ? step = 1 : step++),
+		this.innerHTML = (typeof this.processed == "undefined" ? ("<div class='before'>" + step + "</div>") : "") + this.innerHTML, this.processed = true, this.runtimeStyle.zoom = "1"
+	);
+}
+
+ol.bullets li:before{
+  position:absolute;
+  content:counter(li); // Use the counter as content
+  counter-increment:li; // Increment the counter by 1
+  // Position and style the number
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  width:22px;
+  top:0px;
+  left:-25px;
+  // Some space between the number and the content in browsers that support generated content but not positioning it (Camino 2 is one example)
+  margin:0 8px 0 0;
+  padding:4px;
+  color:#ffffff;
+  background:#e20030;
+  text-align:center;
+  -moz-border-radius:15px;
+  -webkit-border-radius:15px;
+  border-radius:15px;
+}
+
+/* DIVERS
+hr{border-style:solid; border-color:black; border-width:0 0 1px; }
+.noborder{border:none; }
+.overflowHidden{overflow:hidden; }
+.overflowAuto{overflow:auto; }
+.clear{clear:both; }
+
+.textvertical{
+  -webkit-transform:rotate(-90deg);		// Safari
+  -moz-transform:rotate(-90deg);		// Firefox
+  /*-ms-transform:rotate(-90deg);		// IE
+  -o-transform:rotate(-90deg);			// Opera
+  transform:rotate(-90deg);				// generic
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  //writing-mode:tb-rl;
+}
+
+//a:link, a:visited, a:hover, input[type="submit"], button, .pointer{cursor:pointer; }
+
+.cursAuto{cursor:auto; }
+.custArrow{cursor:arrow; }
+.custForbid{cursor:no-drop; cursor:not-allowed; }
+
+// hide spinner for input type number
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+*/

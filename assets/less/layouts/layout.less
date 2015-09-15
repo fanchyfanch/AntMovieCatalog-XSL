@@ -1,0 +1,81 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+	DOCUMENT INFORMATION
+	Category    : layouts
+	Filename    : layout.less
+	Author      : François GUIBERT (f@nchy.fr)
+	Author URI  : http://www.fanchy.fr
+	Version     : 1.0
+	Created     : 2015/07/01
+	Updated     : 2015/08/04
+	Description :
+	Comment		:
+------------------------------------------------------------------*/
+@pesticide-debug-outline : true;
+@pesticide-debug-background : false;
+@pesticide-debug-depth : false;
+
+//@import "http://localhost/_libraries/CSS/helpers/debug-pesticide/less/pesticide";
+//@import (reference) "../themes/_bootstrap-reference";
+@import (reference) "../helpers/fanchy";
+
+html{
+
+	body{
+		//.container;
+		//.container-fluid;
+
+		#site-header{
+			//.hide;
+			//.container-fluid;
+			.make-row(0);
+
+			nav{
+				.make-xs-column(12);
+			}
+		}
+
+		main{
+			//.hide;
+			&.Block{
+				.container;
+			}
+
+			&.List{
+				.container-fluid;
+			}
+
+			section{
+				.make-row();
+
+				article{
+					.make-xs-column(12);
+				}
+			}
+		}
+
+
+		aside{
+			//.hide;
+			//.container-fluid;
+			.make-row(0);
+
+			> div{
+				.make-xs-column(12);
+			}
+		}
+
+
+		#site-footer{
+			//.hide;
+			//.container-fluid;
+			.make-row(0);
+
+			#siteinfo{
+				.make-xs-column(12);
+				.text-center;
+				word-wrap:break-word;
+			}
+		}
+	}
+}

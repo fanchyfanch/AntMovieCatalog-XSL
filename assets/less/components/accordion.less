@@ -1,0 +1,52 @@
+@charset "utf-8";
+/*------------------------------------------------------------------------
+	TAB BOX component
+------------------------------------------------------------------------*/
+@import (reference) "../themes/_bootstrap-reference.less";
+
+.accordion {
+  ol{
+	margin: 0 auto;
+	.list-unstyled;
+
+	li{
+
+	  input[type="radio"]{display:none; }
+
+	  label {
+		position:relative;
+		display: block;
+		padding:1rem 2rem;
+		color:white;
+		background:black;
+		cursor: pointer;
+
+		&:hover{background:gray; }
+		&:after{
+		  position:absolute;
+		  content: '\f078';
+		  right:2rem;
+		  font-family:fontawesome;
+		}
+	  }
+
+	  input[type="radio"]:checked ~ label {
+		background:gray;
+
+		&:after{
+		  .rotate(90deg);
+		}
+	  }
+
+	  .content {
+		display:none;
+		overflow: hidden;
+	  }
+
+	  input[type="radio"]:checked ~ .content {
+		display:block;
+	  }
+	}
+  }
+}
+

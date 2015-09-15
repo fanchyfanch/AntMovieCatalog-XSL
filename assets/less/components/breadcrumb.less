@@ -1,0 +1,45 @@
+@charset "utf-8";
+/*------------------------------------------------------------------------
+	BREADCRUM component
+------------------------------------------------------------------------*/
+.breadcrumb-container{
+//  text-align:center;
+
+  ol{
+	display: inline-block;
+	overflow: hidden;
+	list-style-type:none;
+	text-transform:uppercase;
+	margin:0;
+	padding:0;
+
+	li{
+	  text-decoration: none;
+	  outline: none;
+	  display: block;
+	  float: left;
+	  line-height: 36px;
+	  padding:0 15px 0 0;
+	  /*need more margin on the left of links to accomodate the numbers*/
+	  position: relative;
+
+	  &:first-child{
+		padding-left:15px;
+	  }
+
+	  &.active{
+		font-weight:bold;
+	  }
+
+	  &:after{
+		padding:0 0 0 15px;
+		content:'/';
+	  }
+
+	  /*we dont need an arrow after the last link*/
+	  &:last-child:after{
+		content: none;
+	  }
+	}
+  }
+}

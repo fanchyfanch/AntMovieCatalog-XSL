@@ -1,0 +1,166 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+
+DOCUMENT INFORMATION
+- Filename    : main.less
+- Category    : Main (root)
+- Title       : Project Base
+- Version     : 0.1
+- Author      : François GUIBERT (f@nchy.fr)
+- Created     : 2015/03/18
+- Updated     : 2015/03/18
+- Description :
+
+_______________________________________________________________
+
+PLEASE DO NOT PUT STYLES DIRECTLY IN THIS FILE
+_______________________________________________________________
+
+
+DESCRIPTION
+This main LESS file is used to load modular LESS files on the go.
+In this way, things are kept simple to organize, use and debug.
+
+It also explains how folders and files are structured so as you can
+directly find the info you want by consulting proper information.
+
+Finally, it describes how to organize CSS properties as a standard
+application.
+
+
+MORE ABOUT LESS
+Syntax: @import (keyword) "filename";
+
+The following import directives have been implemented:
+
+    reference	: use a Less file but do not output it
+    inline		: include the source file in the output but do not process it
+    less		: treat the file as a Less file, no matter what the file extension
+    css			: treat the file as a CSS file, no matter what the file extension
+    once		: only include the file once (this is default behavior)
+    multiple	: include the file multiple times
+    optional	: continue compiling when file is not found
+
+More than one keyword per @import is allowed, you will have to use commas to separate the keywords:
+	Example: @import (optional, reference) "foo.less";
+
+
+CONTENT
+0 - Variables  ............................ custom variables for conditionnal importing
+1 - Vendors    ............................ normalize, font-awesome, bootstrap
+2 - Base       ............................ reset, typography
+3 - Helpers    ............................ general class helpers
+4 - Components ............................ modular elements
+5 - Layouts    ............................ currently used layout
+6 - Themes     ............................ colors of the application
+7 - Pages      ............................ specific behaviour
+
+------------------------------------------------------------------*/
+//------------------------------------------------------------------
+//	0 - VENDORS
+//------------------------------------------------------------------
+//@import (reference) "themes/_tinubu-corporate-colors.less";
+
+
+//------------------------------------------------------------------
+//	EMAILING - NEWSLETTER STRUCTURE
+//------------------------------------------------------------------
+//@import "http://localhost/_libraries/HTML/_email/framework/ink/1.0.5/css/reset-email.css";
+//@import "http://localhost/_libraries/HTML/_email/framework/ink/1.0.5/css/ink.css";
+//@import "http://localhost/_libraries/HTML/_email/framework/ink/1.0.5/css/email-utilities.css";
+//@import "http://localhost/_libraries/HTML/_email/framework/ink/1.0.5/css/debug-email.css";
+//@import "http://localhost/_libraries/HTML/_email/framework/ink/1.0.5/css/custom.css";
+
+
+/*------------------------------------------------------------------
+	1 - VENDORS
+------------------------------------------------------------------*/
+//@import "../../bower_components/normalize-css/normalize.css";
+@import "../../bower_components/font-awesome/less/font-awesome.less";
+@import "../../bower_components/bootstrap/dist/css/bootstrap.min.css";
+@import "../../bower_components/bootstrap/dist/css/bootstrap-theme.min.css";
+//@import "../../bower_components/bootstrap/less/bootstrap.less";
+//@import "themes/theme-bootstrap-custom.less";
+
+
+
+/*------------------------------------------------------------------
+	2 - BASE
+------------------------------------------------------------------*/
+//@import "base/reset.less";
+@import "base/language-specific.less";
+
+
+
+/*------------------------------------------------------------------
+	3 - HELPERS
+------------------------------------------------------------------*/
+//@import "helpers/_generic.less";
+//@import "helpers/fanchy.less";
+//@import "helpers/wordpress.less";
+
+
+/*------------------------------------------------------------------
+	4 - COMPONENTS
+------------------------------------------------------------------*/
+@import "../../bower_components/world-flags-sprite/stylesheets/flags32.css";
+@import "../../bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css";
+
+//@import "components/warning.less";
+//@import "components/breadcrumb.less";
+//@import "./components/loader.less";
+//@import "components/slider.less";
+//@import "components/menu.less";
+//@import "components/menu-meganizr.less";
+//@import "components/tab-box.less";
+//@import "components/accordion.less";
+//@import "components/caption-hover.less";
+
+//@import "components/forms.less";
+//@import "./vendors/_bootstrap.less";
+//@import "./components/background-ornament.less";
+//@import ".http://localhost/_libraries/CSS/helpers/css3patterns-master/background-patterns.css";
+
+
+
+/*------------------------------------------------------------------
+	5 - LAYOUTS
+------------------------------------------------------------------*/
+@import "layouts/layout.less";
+
+
+/*------------------------------------------------------------------
+	6 - THEMES
+------------------------------------------------------------------*/
+//@import "themes/theme-bootstrap-custom";
+@import "themes/theme-AntMovieCatalog";
+
+
+
+/*------------------------------------------------------------------
+	7 - PAGES
+------------------------------------------------------------------*/
+
+/*
+
+
+.spinner {
+	position: absolute;
+	top:calc(~'(100% - 64px) / 2');
+	left:calc(~'(100% - 64px) / 2');
+	width:64px;
+	height:64px;
+	border-radius:50%;
+	background-image: url('../img/loader.gif');
+}
+
+
+
+
+@media (max-width: @screen-xs-max) {
+	.warning,
+	.warning--is-too-low{
+	  display:none !important;
+	}
+}
+*/

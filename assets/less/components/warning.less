@@ -1,0 +1,97 @@
+@charset "utf-8";
+/*------------------------------------------------------------------------
+	WARNING component
+
+	DESCRIPTION
+	This file is used in proper coordination with HTML template
+    to display warning messages in the following cases :
+    - javascript is disabled in the browser <html class="no-js">
+    - browser is IE below 9 <!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+    - screen resolution is not the best (see with bootstrap helper class)
+
+    TABLE OF CONTENT
+		1 - Theme
+		2 - Mechanism display/hide
+		3 - Media Queries
+
+
+------------------------------------------------------------------------*/
+@import (reference) "../themes/_bootstrap-reference";
+
+/*------------------------------------------------------------------------
+	1 - Theme
+------------------------------------------------------------------------*/
+.warning{
+  .alert;
+  .alert-danger;
+  //.bg-danger;
+  //.text-danger;
+
+  .hidden-print;
+
+  position:relative;
+  z-index:500;
+  margin-bottom:0;
+
+  a{
+	.alert-link;
+  }
+
+  p, ul{
+	.text-justify;
+  }
+
+  // because of the hiding system that applies 'display:block;' to LIs when showing conditional statement, we're forced
+  // to use that trick to display a car in front of the list entry
+  ul{
+	.list-unstyled;
+
+	li{
+	  &:first-letter{
+		.text-capitalize;	// there's a bug here according to http://www.w3.org/Style/CSS/Test/CSS3/Selectors/current/html/full/flat/css3-modsel-39c.html
+	  }						// used in conjuction with :before and 'content', this last is override the first letter capitalized
+
+	  &:before{
+		content:"- ";
+	  }
+	}
+  }
+}
+
+.lt-ie9 .warning{
+//    position:absolute;
+//    width:100%;
+}
+
+/*------------------------------------------------------------------------
+	2 - Mechanism display/hide
+	    A ) main block
+	    B ) list entries
+------------------------------------------------------------------------*/
+.js .warning,
+.warning li{
+  	display:none;
+}
+
+.lt-ie7 .warning,
+.lt-ie8 .warning,
+.lt-ie9 .warning,
+.lt-ie7 .warning--browserupgrade,
+.lt-ie8 .warning--browserupgrade,
+.lt-ie9 .warning--browserupgrade,
+.lt-ie10 .warning--browserupgrade,
+.no-js .warning--no-js{
+  	display:block;
+}
+
+
+
+/*------------------------------------------------------------------------
+	3 - Media Queries
+------------------------------------------------------------------------*/
+@media (max-width: @screen-xs-max) {
+  .warning,
+  .warning--is-too-low{
+	display:block !important;
+  }
+}

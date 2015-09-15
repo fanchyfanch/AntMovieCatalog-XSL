@@ -1,0 +1,191 @@
+<div ng-switch on="viewModel.model">
+    <article id="movie_{{movie._Number}}"
+            ng-switch-when="Block"
+            ng-class="{'item--first': $first, 'item--last' : $last, 'item--middle' : $middle, 'item--odd'  : $odd, 'item--even' : $even}"
+            ng-repeat="movie in (filtered = (movies | filter:search | filter:uniqueCategorysearch | filter:uniqueCountrysearch | filter:uniqueYearsearch | filter:uniqueLengthsearch | orderBy:sortCriteria.model.id:sortDirection | limitTo : perPage.model.id : (perPage.model.id * (currentPage - 1))))">
+        <header>
+            <h1 class="TranslatedTitle" ng-bind-html="movie._TranslatedTitle | highlight:search"></h1>
+            <h2 class="OriginalTitle" ng-show="movie._TranslatedTitle != movie._OriginalTitle" ng-bind-html="movie._OriginalTitle | highlight:search"></h2>
+            <div class="Rating" ng-controller="MovieRatingController">
+                <!--
+                <rating ng-model="rate" max="max" readonly="isReadonly" state-on="'fa-star'" state-off="'fa-star-o'"></rating>
+                -->
+                <rating ng-model="rate" max="max" readonly="isReadonly"></rating>
+            </div>
+        </header>
+
+        <div class="hentry-content">
+            <div class="thumbnail__block">
+                <img ng-src="{{movie._Picture | poster}}" title="{{movie._TranslatedTitle}}" />
+            </div>
+            <div class="movie-infos" ng-init="authorizedKey = [
+                '_Category',
+                '_Country',
+                '_Year',
+                '_Length',
+                '_Director',
+                '_Producer',
+                '_Writer',
+                '_Composer',
+                '_Resolution',
+                '_Framerate',
+                '_VideoBitrate',
+                '_AudioBitrate',
+                '_AudioFormat',
+                '_VideoFormat',
+                '_Size',
+                ]">
+                <dl>
+                    <dt class="{{k | sanitize}}" ng-repeat-start="k in authorizedKey">{{k | translate}}</dt>
+                    <dd class="{{k | sanitize}}" ng-repeat-end ng-switch on="k">
+                        <ul class="f32" ng-switch-when="_Country" ng-bind-html="movie[k] | country:countriesList"></ul>
+                        <span ng-switch-when="_Size" ng-bind-html="movie[k] * 1024 * 1024 | bytes | highlight:search"></span>
+                        <span ng-switch-when="_Length" ng-bind-html="movie[k] | minutesToDateTime | date:'HH\'h\'mm' | highlight:search"></span>
+                        <span ng-switch-when="_Resolution" ng-bind-html="movie[k] | resolution | highlight:search"></span>
+                        <span ng-switch-when="_Framerate" ng-bind-html="movie[k] | number:0 | highlight:search"></span>
+                        <span ng-switch-default ng-bind-html="movie[k] | highlight:search"></span>
+                    </dd>
+                </dl>
+            </div>
+
+            <p class="Description" ng-bind-html="movie._Description | highlight:search"></p>
+
+            <p class="Actors">
+                <span class="intitule">{{'with' | translate}}</span>
+                <span ng-bind-html="movie._Actors | highlight:search"></span>
+            </p>
+
+            <div class="Comments" ng-controller="MovieCollapseController">
+                <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Lire les commentaires</button>
+                <hr/>
+                <div collapse="isCollapsed">
+                    <p class="well well-lg" ng-bind-html="movie._Comments | comments | highlight:search"></p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <table ng-switch-default="" ng-init="authorizedKey = [
+        '_TranslatedTitle',
+        '_OriginalTitle',
+        '_Category',
+        '_Country',
+        '_Year',
+        '_Length',
+        '_Director',
+        '_Producer',
+        '_Writer',
+        '_Composer',
+        '_UserRating',
+        '_Resolution',
+        '_Framerate',
+        '_VideoBitrate',
+        '_AudioBitrate',
+        '_AudioFormat',
+        '_VideoFormat',
+        '_Size',
+        ]">
+        <colgroup>
+            <col class="{{k | sanitize}}"
+                 ng-class="{'col--first': $first, 'col--last' : $last, 'col--middle' : $middle, 'col--odd'  : $odd, 'col--even' : $even}"
+                 ng-repeat="k in authorizedKey"/>
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="{{k | sanitize}}" ng-repeat="k in authorizedKey">
+                    {{k | translate}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="movie_{{movie._Number}}"
+                ng-class="{'line--first': $first, 'line--last' : $last, 'line--middle' : $middle, 'line--odd'  : $odd, 'line--even' : $even}"
+                ng-repeat="movie in (filtered = (movies | filter:search | filter:uniqueCategorysearch | filter:uniqueCountrysearch | filter:uniqueYearsearch | filter:uniqueLengthsearch | orderBy:sortCriteria.model.id:sortDirection | limitTo : perPage.model.id : (perPage.model.id * (currentPage - 1))))">
+                <td class="{{k | sanitize}}"
+                    data-label="{{k | translate}}"
+                    ng-class="{'cell--first': $first, 'cell--last' : $last, 'cell--middle' : $middle, 'cell--odd'  : $odd, 'cell--even' : $even}"
+                    ng-repeat="k in authorizedKey"
+                    ng-switch on="k"
+                >
+                    <ul class="f32" ng-switch-when="_Country" ng-bind-html="movie[k] | country:countriesList"></ul>
+                    <span ng-switch-when="_Size" ng-bind-html="movie[k] * 1024 * 1024 | bytes | highlight:search"></span>
+                    <span ng-switch-when="_Length" ng-bind-html="movie[k] | minutesToDateTime | date:'HH\'h\'mm' | highlight:search"></span>
+                    <span ng-switch-when="_Resolution" ng-bind-html="movie[k] | resolution | highlight:search"></span>
+                    <span ng-switch-when="_Framerate" ng-bind-html="movie[k] | number:0 | highlight:search"></span>
+                    <a ng-switch-when="_TranslatedTitle" ng-click="open(movie)" ng-bind-html="movie[k] | highlight:search"></a>
+                    <span ng-switch-default ng-bind-html="movie[k] | highlight:search"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+       <script type="text/ng-template" id="myModalContent.html">
+           <header class="modal-header">
+               <button type="button" class="close" aria-label="Close" ng-click="ok()">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+               <h1 class="TranslatedTitle">{{movie._TranslatedTitle}}</h1>
+               <h2 class="OriginalTitle" ng-show="movie._TranslatedTitle != movie._OriginalTitle" ng-bind-html="movie._OriginalTitle | highlight:search"></h2>
+           </header>
+           <div class="modal-body">
+               <div class="hentry-content">
+                   <div class="thumbnail__block">
+                       <img ng-src="{{movie._Picture | poster}}" title="{{movie._TranslatedTitle}}" />
+                   </div>
+                   <div class="movie-infos" ng-init="authorizedKey = [
+                       '_Category',
+                       '_Country',
+                       '_Year',
+                       '_Length',
+                       '_Director',
+                       '_Producer',
+                       '_Writer',
+                       '_Composer',
+                       '_Resolution',
+                       '_Framerate',
+                       '_VideoBitrate',
+                       '_AudioBitrate',
+                       '_AudioFormat',
+                       '_VideoFormat',
+                       '_Size',
+                       ]">
+                       <dl>
+                           <dt class="{{k | sanitize}}" ng-repeat-start="k in authorizedKey">{{k | translate}}</dt>
+                           <dd class="{{k | sanitize}}" ng-repeat-end ng-switch on="k">
+                               <ul class="f32" ng-switch-when="_Country" ng-bind-html="movie[k] | country:countriesList"></ul>
+                               <span ng-switch-when="_Size" ng-bind-html="movie[k] * 1024 * 1024 | bytes | highlight:search"></span>
+                               <span ng-switch-when="_Length" ng-bind-html="movie[k] | minutesToDateTime | date:'HH\'h\'mm' | highlight:search"></span>
+                               <span ng-switch-when="_Resolution" ng-bind-html="movie[k] | resolution | highlight:search"></span>
+                               <span ng-switch-when="_Framerate" ng-bind-html="movie[k] | number:0 | highlight:search"></span>
+                               <span ng-switch-default ng-bind-html="movie[k] | highlight:search"></span>
+                           </dd>
+                       </dl>
+                   </div>
+
+                   <p class="Description" ng-bind-html="movie._Description | highlight:search"></p>
+
+                   <p class="Actors">
+                       <span class="intitule">{{'with' | translate}}</span>
+                       <span ng-bind-html="movie._Actors | highlight:search"></span>
+                   </p>
+
+                   <div class="Comments" ng-controller="MovieCollapseController">
+                       <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Lire les commentaires</button>
+                       <hr/>
+                       <div collapse="isCollapsed">
+                           <p class="well well-lg" ng-bind-html="movie._Comments | highlight:search"></p>
+                       </div>
+                   </div>
+               </article>
+           </div>
+           <div class="modal-footer">
+               <button class="btn btn-primary" type="button" ng-click="ok()">Close</button>
+           <!--
+               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+           -->
+           </div>
+       </script>
+    </div>
+
+</div>
